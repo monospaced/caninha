@@ -2173,7 +2173,7 @@ var Interface = {
     main();
     $('snapback').onclick = Interface.showSnapback;
     $('restart').onclick = Interface.restart;
-    $('share').onclick = Interface.showShare;
+    //$('share').onclick = Interface.showShare;
   },
   restart: function(){
     'use strict';
@@ -2181,11 +2181,11 @@ var Interface = {
       state.restart();
     }
   },
-  showShare: function(event){
-    'use strict';
-    Interface.hideAllMenus();
-    Interface.showMenu(event, $('shareMenu'));
-  },
+  //showShare: function(event){
+  //  'use strict';
+  //  Interface.hideAllMenus();
+  //  Interface.showMenu(event, $('shareMenu'));
+  //},
   showSnapback: function(event){
     'use strict';
     Interface.hideAllMenus();
