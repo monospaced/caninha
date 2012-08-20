@@ -25,10 +25,14 @@
 // none
 //
 
-function History()
-{
-	this.history = [{ passage: null, variables: {}, hash: null }];
-};
+function History(){
+  'use strict';
+  this.history = [{
+    passage: null, 
+    variables: {}, 
+    hash: null
+  }];
+}
 
 //
 // Method: init
@@ -44,15 +48,16 @@ function History()
 // nothing
 //
 
-History.prototype.init = function()
-{
-	var self = this;
-
-	if (! this.restore())
-		this.display('Start', null);
-	
-	this.hash = window.location.hash;
-	this.interval = window.setInterval(function() { self.watchHash.apply(self) }, 250);
+History.prototype.init = function(){
+  'use strict';
+  var self = this;
+  if (!this.restore()) {
+    this.display('Start', null);
+  }
+  this.hash = window.location.hash;
+  this.interval = window.setInterval(function(){
+    self.watchHash.apply(self);
+  }, 250);
 };
 
 //
@@ -74,50 +79,42 @@ History.prototype.init = function()
 // The DOM element containing the passage on the page.
 //
 
-History.prototype.display = function (title, link, render)
-{	
-	console.log('displaying "' + title + '" ' + (render || '') + ' from ', link);	
-	
-	// create a fresh entry in the history
-	
-	var passage = tale.get(title);
-	
-	this.history.unshift({ passage: passage, variables: clone(this.history[0].variables) } );
-	this.history[0].hash = this.save();
-	
-	// add it to the page
-	
-	var div = passage.render();
-	
-	if (render != 'offscreen')
-	{
-		removeChildren($('passages'));			
-		$('passages').appendChild(div);
-		
-		// animate its appearance
-		
-		if (render != 'quietly')
-			fade(div, { fade: 'in' });
-	}
-	
-	if ((render == 'quietly') || (render == 'offscreen'))
-		div.style.visibility = 'visible';
-	
-	if (render != 'offscreen')
-	{
-		document.title = tale.title;
-		this.hash = this.save();
-	
-		if (passage.title != 'Start')
-		{
-			document.title += ': ' + passage.title;
-			window.location.hash = this.hash;
-		};
-		
-		window.scroll(0, 0);
-	};
-	
-	return div;	
+History.prototype.display = function(title, link, render){
+  'use strict';
+  console.log('displaying "' + title + '" ' + (render || '') + ' from ', link);
+  // create a fresh entry in the history
+  var passage = tale.get(title),
+      div;
+  this.history.unshift({
+    passage: passage, 
+    variables: clone(this.history[0].variables)
+  });
+  this.history[0].hash = this.save();
+  // add it to the page
+  div = passage.render();
+  if (render !== 'offscreen'){
+    removeChildren($('passages'));      
+    $('passages').appendChild(div);
+    // animate its appearance
+    if (render !== 'quietly') {
+      fade(div, {
+        fade: 'in'
+      });
+    }
+  }
+  if ((render === 'quietly') || (render === 'offscreen')) {
+    div.style.visibility = 'visible';
+  }
+  if (render !== 'offscreen') {
+    document.title = tale.title;
+    this.hash = this.save();
+    if (passage.title !== 'Start') {
+      document.title += ': ' + passage.title;
+      window.location.hash = this.hash;
+    }
+    window.scroll(0, 0);
+  }
+  return div; 
 };
 
 //
@@ -132,13 +129,12 @@ History.prototype.display = function (title, link, render)
 // none
 //
 
-History.prototype.restart = function()
-{
-	// clear any bookmark
-	// this has the side effect of forcing a page reload
-	// (in most cases)
-	
-	window.location.hash = '';
+History.prototype.restart = function(){
+  'use strict';
+  // clear any bookmark
+  // this has the side effect of forcing a page reload
+  // (in most cases)
+  window.location.hash = '';
 };
 
 //
@@ -155,21 +151,17 @@ History.prototype.restart = function()
 // nothing
 //
 
-History.prototype.save = function (passage)
-{
-	var order = '';
-
-	// encode our history
-	
-	for (var i = this.history.length - 1; i >= 0; i--)
-	{
-		if ((this.history[i].passage) && (this.history[i].passage.id))
-			order += this.history[i].passage.id.toString(36) + '.';
-	};
-	
-	// strip the trailing period
-	
-	return '#' + order.substr(0, order.length - 1);
+History.prototype.save = function(passage){
+  'use strict';
+  var order = '';
+  // encode our history
+  for (var i = this.history.length - 1; i >= 0; i--){
+    if ((this.history[i].passage) && this.history[i].passage.id) {
+      order += this.history[i].passage.id.toString(36) + '.';
+    }
+  }
+  // strip the trailing period
+  return '#' + order.substr(0, order.length - 1);
 };
 
 //
@@ -183,39 +175,34 @@ History.prototype.save = function (passage)
 // Whether this method actually restored anything.
 //
 
-History.prototype.restore = function ()
-{
-	try
-	{
-		if ((window.location.hash == '') || (window.location.hash == '#'))
-			return false;
-	
-		var order = window.location.hash.replace('#', '').split('.');
-		var passages = [];
-		
-		// render the passages in the order the reader clicked them
-		// we only show the very last one
-		
-		for (var i = 0; i < order.length; i++)
-		{
-			var id = parseInt(order[i], 36);
-			
-			if (! tale.has(id))
-				return false;
-			
-			console.log('restoring id ' + id);	
-			
-			var method = (i == order.length - 1) ? '' : 'offscreen';
-			passages.unshift(this.display(id, null, method));
-		};
-		
-		return true;
-	}
-	catch (e)
-	{
-		console.log("restore failed", e);
-		return false;
-	};
+History.prototype.restore = function(){
+  'use strict';
+  var order,
+      passages,
+      id,
+      method;
+  try {
+    if ((window.location.hash === '') || (window.location.hash === '#')) {
+      return false;
+    }
+    order = window.location.hash.replace('#', '').split('.');
+    passages = [];
+    // render the passages in the order the reader clicked them
+    // we only show the very last one
+    for (var i = 0; i < order.length; i++) {
+      id = parseInt(order[i], 36);
+      if (! tale.has(id)) {
+        return false;
+      }
+      console.log('restoring id ' + id);  
+      method = (i === order.length - 1) ? '' : 'offscreen';
+      passages.unshift(this.display(id, null, method));
+    }
+    return true;
+  } catch (e) {
+    console.log('restore failed', e);
+    return false;
+  }
 };
 
 //
@@ -231,28 +218,24 @@ History.prototype.restore = function ()
 // nothing
 //
 
-History.prototype.watchHash = function()
-{
-	if (window.location.hash != this.hash)
-	{	
-		console.log('new hash: ' + window.location.hash + ', was ' + this.hash);
-				
-		if ((window.location.hash != '') && (window.location.hash != '#'))
-		{
-			this.history = [{ passage: null, variables: {} }];
-			removeChildren($('passages'));
-			
-			$('passages').style.visibility = 'hidden';
-			
-			if (! this.restore())
-				alert('The passage you had previously visited could not be found.');
-			
-			$('passages').style.visibility = 'visible';
-		}
-		else
-			window.location.reload();
-		
-		this.hash = window.location.hash;
-	}
+History.prototype.watchHash = function(){
+  'use strict';
+  if (window.location.hash !== this.hash) { 
+    console.log('new hash: ' + window.location.hash + ', was ' + this.hash);
+    if (window.location.hash !== '' && window.location.hash !== '#') {
+      this.history = [{
+        passage: null,
+        variables: {}
+      }];
+      removeChildren($('passages'));
+      $('passages').style.visibility = 'hidden';
+      if (!this.restore()) {
+        alert('The passage you had previously visited could not be found.');
+      }
+      $('passages').style.visibility = 'visible';
+    } else {
+      window.location.reload();
+    }
+    this.hash = window.location.hash;
+  }
 };
-

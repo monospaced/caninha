@@ -69,7 +69,7 @@ module.exports = function(grunt) {
         undef: true,
         unused: true,
         strict: true,
-        trailing: true,
+        //trailing: true,
         browser: true,
         devel: true,
         evil: true
@@ -86,6 +86,6 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-css');
   
   // Default task.
-  grunt.registerTask('default', 'concat:js min cssmin concat:dist');
+  grunt.registerTask('default', 'concat:js lint min cssmin concat:dist');
 
 };
