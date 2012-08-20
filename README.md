@@ -10,4 +10,4 @@ Fork of [tweecode/sugarcane](https://github.com/tweecode/sugarcane) with the fol
 
 ## Usage
 
-You can try out Caninha by overwriting `header.html` in `/targets/sugarcane/` with [caninha/header.html](https://github.com/monospaced/caninha/blob/master/header.html). The Sugarcane Story Format option will then output to Melville. In case you need to restore to Sugarcane, here’s the original [sugarcane/header.html](https://github.com/tweecode/jonah/blob/master/header.html).
+You can try out Caninha by overwriting `header.html` in `/targets/sugarcane/` with [caninha/header.html](https://github.com/monospaced/caninha/blob/master/header.html). The Sugarcane Story Format option will then output to Caninha. In case you need to restore to Sugarcane, here’s the original [sugarcane/header.html](https://github.com/tweecode/jonah/blob/master/header.html).
