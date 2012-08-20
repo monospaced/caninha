@@ -1,0 +1,7 @@
+{
+  "name": "Caninha",
+  "version": "0.1.0",
+  "dependencies" : {
+    "grunt-css": ">0.0.0"
+  }
+}
