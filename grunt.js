@@ -24,8 +24,8 @@ module.exports = function(grunt) {
               '<file_strip_banner:macros.js>',
               '<file_strip_banner:passage.js>',
               '<file_strip_banner:tale.js>',
-              '<file_strip_banner:interface.js>',
-              '<file_strip_banner:init.js>'],
+              '<file_strip_banner:init.js>',
+              '<file_strip_banner:interface.js>'],
         dest: 'templates/script.js'
       },
       dist: {
