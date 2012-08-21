@@ -1,4 +1,4 @@
-/*! Caninha - v0.1.0 - 2012-08-20
+/*! Caninha - v0.1.0 - 2012-08-21
 * http://scottboyle.co.uk/
 * Copyright (c) 2012 Monospaced; Licensed MIT */
 
@@ -2171,8 +2171,8 @@ var Interface = {
     'use strict';
     console.log('Interface.init()');
     main();
-    $('snapback').onclick = Interface.showSnapback;
-    $('restart').onclick = Interface.restart;
+    //$('snapback').onclick = Interface.showSnapback;
+    $('restartStory').onclick = Interface.restart;
     //$('share').onclick = Interface.showShare;
   },
   restart: function(){
@@ -2180,6 +2180,7 @@ var Interface = {
     if (confirm('Are you sure you want to restart this story?')) {
       state.restart();
     }
+    return false;
   },
   //showShare: function(event){
   //  'use strict';

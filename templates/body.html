@@ -1,17 +1,23 @@
   })();</script>
 </head>
 <body>
-  <ul id="sidebar">
-    <li id="title">
-      <span id="storyTitle"></span>
-      <span id="titleSeparator"></span>
-      <span id="storyAuthor"></span>
-    </li>
-    <li id="storyMenu"></li>
-    <li id="snapback">Rewind</li>
-    <li id="restart">Restart</li>
-    <li id="credits">This story was created with <a href="http://gimcrackd.com/etc/src/">Twee</a> and is powered by <a href="http://tiddlywiki.com/">TiddlyWiki</a>.</li>
-  </ul>
-  <div id="snapbackMenu" class="menu"></div>
-  <div id="passages"></div>
+  <div id="floater">
+    <div class="container">
+      <div id="storyMenu"></div>
+      <p><a id="restartStory" href="#_">Restart Story</a></p>
+    </div>
+  </div>
+  <div id="content1">
+    <div id="content2">
+      <div id="header"></div>
+      <div id="titleLine"></div>
+      <h1><span id="storyTitle"></span></h1>
+      <h2><span id="storySubtitle"></span></h2>
+      <h3><span id="storyAuthor"></span></h3>
+      <div id="passages"></div>
+      <p id="footer">
+      This story was created with <a class="externalLink" href="http://gimcrackd.com/etc/src/">Twee</a> and is powered by <a class="externalLink" href="http://www.tiddlywiki.com/">TiddlyWiki</a>.
+      </p>
+    </div>
+  </div>
   <div id="storeArea">

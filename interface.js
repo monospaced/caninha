@@ -3,8 +3,8 @@ var Interface = {
     'use strict';
     console.log('Interface.init()');
     main();
-    $('snapback').onclick = Interface.showSnapback;
-    $('restart').onclick = Interface.restart;
+    //$('snapback').onclick = Interface.showSnapback;
+    $('restartStory').onclick = Interface.restart;
     //$('share').onclick = Interface.showShare;
   },
   restart: function(){
@@ -12,6 +12,7 @@ var Interface = {
     if (confirm('Are you sure you want to restart this story?')) {
       state.restart();
     }
+    return false;
   },
   //showShare: function(event){
   //  'use strict';

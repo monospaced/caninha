@@ -6,7 +6,7 @@ Fork of [tweecode/sugarcane](https://github.com/tweecode/sugarcane) with the fol
 
 * Uses [grunt](https://github.com/cowboy/grunt) to build header.html
 * Javascript: [linted](http://www.jshint.com/) and [strict mode](https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Functions_and_function_scope/Strict_mode)
-* CSS: [normalize](http://necolas.github.com/normalize.css/) + custom theme
+* Uses same HTML and CSS [monospaced/melville](https://github.com/monospaced/melville)
 
 ## Usage
 
