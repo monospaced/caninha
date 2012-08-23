@@ -60,7 +60,7 @@ function Passage(title, el, order){
 
 //
 // Method: render
-// 
+//
 // Renders the passage to a DOM element, including its title, toolbar,
 // and content. It's up to the caller to add this to the DOM tree appropriately
 // and animate its appearance.

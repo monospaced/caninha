@@ -69,7 +69,7 @@ module.exports = function(grunt) {
         undef: true,
         unused: true,
         strict: true,
-        //trailing: true,
+        trailing: true,
         browser: true,
         devel: true,
         evil: true

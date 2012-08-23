@@ -267,7 +267,7 @@ if (!Array.prototype.indexOf) {
   Array.prototype.indexOf = function(v, n){
     'use strict';
     var m = this.length;
-    n = (!n) ? 0 : n; 
+    n = (!n) ? 0 : n;
     for(var i = n; i < m; i++) {
       if (this[i] === v) {
         return i;

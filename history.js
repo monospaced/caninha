@@ -20,7 +20,7 @@
 //
 // Constructor: History
 // Initializes a History object.
-// 
+//
 // Parameters:
 // none
 //
@@ -28,8 +28,8 @@
 function History(){
   'use strict';
   this.history = [{
-    passage: null, 
-    variables: {}, 
+    passage: null,
+    variables: {},
     hash: null
   }];
 }
@@ -86,14 +86,14 @@ History.prototype.display = function(title, link, render){
   var passage = tale.get(title),
       div;
   this.history.unshift({
-    passage: passage, 
+    passage: passage,
     variables: clone(this.history[0].variables)
   });
   this.history[0].hash = this.save();
   // add it to the page
   div = passage.render();
   if (render !== 'offscreen'){
-    removeChildren($('passages'));      
+    removeChildren($('passages'));
     $('passages').appendChild(div);
     // animate its appearance
     if (render !== 'quietly') {
@@ -114,7 +114,7 @@ History.prototype.display = function(title, link, render){
     }
     window.scroll(0, 0);
   }
-  return div; 
+  return div;
 };
 
 //
@@ -194,7 +194,7 @@ History.prototype.restore = function(){
       if (! tale.has(id)) {
         return false;
       }
-      console.log('restoring id ' + id);  
+      console.log('restoring id ' + id);
       method = (i === order.length - 1) ? '' : 'offscreen';
       passages.unshift(this.display(id, null, method));
     }
@@ -220,7 +220,7 @@ History.prototype.restore = function(){
 
 History.prototype.watchHash = function(){
   'use strict';
-  if (window.location.hash !== this.hash) { 
+  if (window.location.hash !== this.hash) {
     console.log('new hash: ' + window.location.hash + ', was ' + this.hash);
     if (window.location.hash !== '' && window.location.hash !== '#') {
       this.history = [{
