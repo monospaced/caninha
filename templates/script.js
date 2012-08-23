@@ -2134,7 +2134,6 @@ function main(){
   // process title, subtitle, author passages
   setPageElement('storyTitle', 'StoryTitle', 'Untitled Story');
   if (tale.has('StoryAuthor')){
-    $('titleSeparator').innerHTML = '<br />';
     setPageElement('storyAuthor', 'StoryAuthor', '');
   }
   if (tale.has('StoryMenu')){
