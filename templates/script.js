@@ -1,4 +1,4 @@
-/*! Caninha - v0.1.0 - 2012-08-21
+/*! Caninha - v0.1.0 - 2012-08-23
 * http://scottboyle.co.uk/
 * Copyright (c) 2012 Monospaced; Licensed MIT */
 
@@ -1937,8 +1937,8 @@ Passage.unescapeLineBreaks = function(text){
 function Tale(){
   'use strict';
   var store,
-      title,
-      el;
+      el,
+      tiddlerTitle;
   this.passages = {};
   if (document.normalize) {
     document.normalize();
@@ -1946,12 +1946,13 @@ function Tale(){
   store = $('storeArea').childNodes;
   for (var i = 0; i < store.length; i++) {
     el = store[i];
-    if (el.getAttribute) {
-      title = el.getAttribute('tiddler');
+    if (el.getAttribute && (tiddlerTitle = el.getAttribute('tiddler'))) {
+      this.passages[tiddlerTitle] = new Passage(tiddlerTitle, el, i);
     }
-    if (title) {
-      this.passages[title] = new Passage(title, el, i);
-    }
+  }
+  this.title = 'Caninha';
+  if (this.passages['StoryTitle']) {
+    this.title = this.passages['StoryTitle'].text;
   }
 }
 
